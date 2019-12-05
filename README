@@ -1,0 +1,5 @@
+
+
+kotlinc ProblemOne.kt -include-runtime -d ProblemOne.jar
+
+java -jar ProblemOne.jar
