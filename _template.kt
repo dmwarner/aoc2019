@@ -2,6 +2,8 @@ package aoc2019.day01
 
 import java.io.File
 
+val INPUT = "dayX/input.txt"
+
 fun main(args: Array<String>) {
     println("day XX : problem X")
 
@@ -13,7 +15,7 @@ fun main(args: Array<String>) {
 
 }
 
-fun lineProcessor(String: line): <T> {
-    println("processing line: ${it}")
+fun lineProcessor(line: String) {
+    println("processing line: ${line}")
 }
 
