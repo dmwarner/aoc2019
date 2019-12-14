@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
     var found = false
 
 
-    File("day02/input.txt").forEachLine {
+    File("day05/input.txt").forEachLine {
         //println("line ${it}")
 
         val ops = it.split(",").toTypedArray().map { it.toInt() }
@@ -44,21 +44,41 @@ fun main(args: Array<String>) {
 }
 class IntCodeComputer(var program: MutableList<Int>) {
 
-
     fun runProgram(noun: Int, verb: Int): Int {
         program[1] = noun
         program[2] = verb
 
-        //println("running program ${program}")
-        for (i in 0..program.size step 4) {
-            if (program[i] == 99) {break}
 
-            when (program[i]) {
+        var halt: Boolean = false
+
+        pointer: Int
+
+        while (!halt) {
+            pointer = pointer + runInstruction(program[pointer])
+
+            if (program[pointer] ==99) {
+                halt == true
+            }
+
+
+
+        }
+    }
+
+    //return is distance to next instruction
+    fun runInstruction(instruction: Int) {
+        when (instruction) {
                 1 -> {
                     program = op1(program, i+1, i+2, i+3)
                 }
                 2 -> {
-                    program = op1(program, i+1, i+2, i+3)
+                    program = op2(program, i+1, i+2, i+3)
+                }
+                3 -> {
+                    program = op3()
+                }
+                4 -> {
+                    program = op4()
                 }
             }
         }
@@ -87,22 +107,23 @@ class IntCodeComputer(var program: MutableList<Int>) {
         return source
     }
 
-    //save
+    //input
     fun op3(
         source: MutableList<Int>,
-        v: Int,
+        input: Int
         loc: Int
     ): MutableList<Int> {
         source[loc] = v
-        return source
+        return 1
     }
 
-    //get
+    //output
     fun op4(
         source: List<Int>,
         loc: Int
     ): Int {
-        return source[loc]
+        println("Output: ${program[loc]}")
+
     }
 }
 
